@@ -1,0 +1,40 @@
+# cypress test result files
+cypress
+
+# e2e test directory
+test/e2e
+
+# Created by https://www.gitignore.io/api/vim,code,linux,macos,windows,sublimetext,node
+
+### Code ###
+# Visual Studio Code - https://code.visualstudio.com/
+.settings/
+.vscode/
+tsconfig.json
+jsconfig.json
+
+### Linux ###
+*~
+
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
+
+### macOS ###
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+### Node modules
+node_modules
+
+## OTel proto specifications
+opentelemetry-proto
