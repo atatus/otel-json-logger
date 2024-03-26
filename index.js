@@ -1,7 +1,7 @@
 const express = require('express');
 const protobuf = require('protobufjs');
 const app = express();
-const PORT = 8072;
+const PORT = 4318;
 
 const root = new protobuf.Root();
 root.resolvePath = (origin, target) => {
@@ -76,7 +76,7 @@ function setupRoutes() {
         await loadProtobufDefinitions();
         setupRoutes();
         app.listen(PORT, () => {
-             console.log(`Server listening on port ${PORT}`);
+             console.log(`OTel JSON Logger listening on port ${PORT}`);
         });
  } catch (err) {
         console.error('Failed to start server:', err);
