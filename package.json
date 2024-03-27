@@ -4,18 +4,16 @@
   "description": "OpenTelemetry JSON Logger",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Atatus",
-  "license": "MIT",
-  "scripts": {
     "watch": "nodemon index.js",
     "start": "node index.js"
   },
+  "author": "Atatus",
+  "license": "MIT",
   "engines": {
     "node": ">=16.0.0"
   },
   "dependencies": {
+    "compression": "^1.7.4",
     "express": "^4.19.1",
     "protobufjs": "^7.2.6"
   }

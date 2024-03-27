@@ -1,4 +1,5 @@
 const express = require('express');
+const compression = require('compression')
 const protobuf = require('protobufjs');
 const app = express();
 const PORT = 4318;
@@ -27,6 +28,9 @@ async function loadProtobufDefinitions() {
          throw err; // Rethrow the error to stop the server from starting
     }
 }
+
+// Use compression middleware
+app.use(compression());
 
 app.use(express.raw({ type: 'application/x-protobuf', limit: '50mb' }));
 app.use(express.json({ type: 'application/json', limit: '50mb' }));
