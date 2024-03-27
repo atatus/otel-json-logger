@@ -28,15 +28,20 @@ async function loadProtobufDefinitions() {
     }
 }
 
-
-app.use(express.raw({type: 'application/x-protobuf'}));
+app.use(express.raw({ type: 'application/x-protobuf', limit: '50mb' }));
+app.use(express.json({ type: 'application/json', limit: '50mb' }));
 
 // Define the Express routes outside of the async function
 function setupRoutes() {
     // Route for traces
     app.post('/v1/traces', (req, res) => {
         try {
-            const message = global.protobufDefinitions.TracesData.decode(req.body);
+            let message;
+            if (req.is('application/x-protobuf')) {
+                message = global.protobufDefinitions.TracesData.decode(req.body);
+            } else {
+                message = req.body;
+            }
             console.log('\nReceived trace message:', JSON.stringify(message));
             res.sendStatus(200);
         } catch (err) {
@@ -48,7 +53,12 @@ function setupRoutes() {
     // Route for metrics
     app.post('/v1/metrics', (req, res) => {
         try {
-            const message = global.protobufDefinitions.MetricsData.decode(req.body);
+            let message;
+            if (req.is('application/x-protobuf')) {
+                message = global.protobufDefinitions.MetricsData.decode(req.body);
+            } else {
+                message = req.body;
+            }
             console.log('\nReceived metrics message:', JSON.stringify(message));
             res.sendStatus(200);
         } catch (err) {
@@ -60,7 +70,12 @@ function setupRoutes() {
     // Route for logs
     app.post('/v1/logs', (req, res) => {
         try {
-            const message = global.protobufDefinitions.LogsData.decode(req.body);
+            let message;
+            if (req.is('application/x-protobuf')) {
+                message = global.protobufDefinitions.LogsData.decode(req.body);
+            } else {
+                message = req.body;
+            }
             console.log('\nReceived logs message:', JSON.stringify(message));
             res.sendStatus(200);
         } catch (err) {
