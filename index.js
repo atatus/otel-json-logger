@@ -33,6 +33,17 @@ app.use(express.json({ type: 'application/json', limit: '50mb' }));
 
 // Define the Express routes outside of the async function
 function setupRoutes() {
+
+    // Health endpoint
+    app.get('/health', (req, res) => {
+        const healthCheck = {
+            status: 'ok',
+            uptime: process.uptime(),
+            memoryUsage: process.memoryUsage(),
+        };
+        res.status(200).json(healthCheck);
+    });
+
     // Route for traces
     app.post('/v1/traces', (req, res) => {
         try {
